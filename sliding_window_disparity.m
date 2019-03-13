@@ -1,0 +1,38 @@
+function sliding_window_disparity(image1, image2, measure, window_size)
+    im1 = imread(image1);
+    im2 = imread(image2);
+    
+    slide_window(im1, im2, measure, window_size)
+
+end
+
+function slide_window(im1, im2, measure, window_size)
+    for row = 1:size(im1,1)
+        for col = 1:size(im1,2)
+           window = zeros(window_size,window_size,3);
+           window_row = 1;
+           window_col = 1;
+           
+           for row_idx = row-window_size/2:row+window_size/2
+               for col_idx = col-window_size/2:col+window_size/2
+                  if row_idx > 0 && row_idx <= size(im1,1) && col_idx > 0 && col_idx <= size(im1,2)
+                      window(window_row,window_col,:) = im1(row_idx,col_idx,:)
+                  end
+                  window_col = window_col + 1;
+               end
+               window_row = window_row + 1;
+           end
+           
+           
+        end
+    end
+    
+    disp(window)
+
+end
+
+function compare_window(window1, im2, measure, window_size)
+    for row = 1:window_size:size(im1,1)
+    end
+    
+end
